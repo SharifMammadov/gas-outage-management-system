@@ -6,12 +6,14 @@ from PyQt6.QtWidgets import (
     QLabel, QListWidget, QListWidgetItem, QPushButton,
     QMessageBox, QDialog
 )
+from PyQt6.QtCore import Qt
 
 from models.database import Database
 from models.cache import Cache
 from views.dialogs.ask_text import AskTextDialog
 from utils.permissions import can_edit, can_delete_lists
 from utils.helpers import make_label, make_btn
+from utils.i18n import t
 import logging
 
 logger = logging.getLogger('ui')
@@ -169,7 +171,8 @@ class ListsTab(QWidget):
         # Səbəb siyahısı
         self.reason_list.clear()
         for reason in self.reason_values:
-            item = QListWidgetItem(reason)
+            item = QListWidgetItem(t(reason))
+            item.setData(Qt.ItemDataRole.UserRole, reason)
             self.reason_list.addItem(item)
 
     def _add_rayon(self):
@@ -362,7 +365,7 @@ class ListsTab(QWidget):
         if not item:
             return
 
-        old_name = item.text()
+        old_name = item.data(Qt.ItemDataRole.UserRole) or item.text()
         new_name = AskTextDialog.get_text(
             self,
             "Səbəb dəyiş",
@@ -419,7 +422,7 @@ class ListsTab(QWidget):
         if not item:
             return
 
-        name = item.text()
+        name = item.data(Qt.ItemDataRole.UserRole) or item.text()
 
         reply = QMessageBox.question(
             self,

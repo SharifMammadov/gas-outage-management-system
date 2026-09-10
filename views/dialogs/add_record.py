@@ -59,7 +59,8 @@ class AddRecordDialog(QDialog):
         # Səbəb
         self.cb_reason = QComboBox()
         self.cb_reason.setEditable(True)
-        self.cb_reason.addItems(self.reason_values)
+        for reason in self.reason_values:
+            self.cb_reason.addItem(t(reason), reason)
         self.cb_reason.setFixedHeight(36)
         form.addRow(self._make_label("Bağlanma səbəbi:", bold=True), self.cb_reason)
 
@@ -150,7 +151,7 @@ class AddRecordDialog(QDialog):
         """Məlumatları yadda saxla"""
         # Dəyərləri topla
         rayon = self.cb_rayon.currentText().strip()
-        reason = self.cb_reason.currentText().strip()
+        reason = self.cb_reason.currentData() or self.cb_reason.currentText().strip()
         street = self.ent_street.text().strip()
         category = self.cb_category.currentData()
 

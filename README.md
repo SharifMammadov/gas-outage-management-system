@@ -61,6 +61,32 @@ The application creates its local database automatically in `data/`.
 Demo passwords are stored as salted PBKDF2 hashes in the generated local
 database. They are intended only for local evaluation of this portfolio app.
 
+## Screenshots
+
+### Outage dashboard
+
+![Outage dashboard](screenshots/outage-dashboard.png)
+
+### Dark mode
+
+![Dark mode](screenshots/dark-mode.png)
+
+### Operational report
+
+![Operational report](screenshots/operational-report.png)
+
+### Add a new outage
+
+![Add a new outage](screenshots/new-outage.png)
+
+### Change outage status
+
+![Change outage status](screenshots/change-status.png)
+
+### Districts and outage reasons
+
+![Districts and outage reasons](screenshots/districts-and-reasons.png)
+
 ## Tests
 
 ```bash

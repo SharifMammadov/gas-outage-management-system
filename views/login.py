@@ -26,7 +26,7 @@ class Login(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Qaz Bağlantıları - Giriş")
-        self.setFixedSize(420, 430)
+        self.setFixedSize(480, 455)
 
         # Pəncərə ikonunu mövcuddursa qur
         if os.path.exists(config.Config.APP_ICON):
@@ -36,7 +36,7 @@ class Login(QWidget):
                 pass
 
         self._setup_ui()
-        center_on_parent(self, 420, 430)
+        center_on_parent(self, 480, 455)
         logger.info("Giriş pəncərəsi açıldı")
 
     def _setup_ui(self):
@@ -102,8 +102,12 @@ class Login(QWidget):
         card_layout.addSpacing(8)
 
         # Köməkçi məlumat
-        hint = QLabel("Demo: admin/demo123 · manager/demo123 · viewer/demo123")
+        hint = QLabel(
+            "Demo accounts:\n"
+            "admin / demo123 · manager / demo123 · viewer / demo123"
+        )
         hint.setStyleSheet(f"color: {C_MUTED}; font-size: 9pt;")
+        hint.setWordWrap(True)
         card_layout.addWidget(hint)
 
         root.addWidget(card)
